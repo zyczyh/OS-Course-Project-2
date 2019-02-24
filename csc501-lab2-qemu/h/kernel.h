@@ -103,6 +103,8 @@ int set_evec(u_int xnum, u_long handler);
 void trap(int inum);
 int xdone();
 long sizmem();
+void linit();
+
 
 #include <mem.h>
 

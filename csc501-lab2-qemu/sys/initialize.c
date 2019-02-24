@@ -13,6 +13,7 @@
 #include <q.h>
 #include <io.h>
 #include <stdio.h>
+#include <lock.h>
 
 /*#define DETAIL */
 #define HOLESIZE	(600)	
@@ -170,12 +171,17 @@ LOCAL int sysinit()
 	pptr->paddr = (WORD) nulluser;
 	pptr->pargs = 0;
 	pptr->pprio = 0;
+	pptr->plock = 0;
+	pptr->plstatus = LOCKE;
+	pptr->pltype = BLANK;
 	currpid = NULLPROC;
 
 	for (i=0 ; i<NSEM ; i++) {	/* initialize semaphores */
 		(sptr = &semaph[i])->sstate = SFREE;
 		sptr->sqtail = 1 + (sptr->sqhead = newqueue());
 	}
+
+	linit();	/* initialize locks */ 
 
 	rdytail = 1 + (rdyhead=newqueue());/* initialize ready list */
 

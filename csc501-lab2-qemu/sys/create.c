@@ -8,6 +8,7 @@
 #include <mem.h>
 #include <io.h>
 #include <stdio.h>
+#include <lock.h>
 
 LOCAL int newpid();
 
@@ -61,6 +62,9 @@ SYSCALL create(procaddr,ssize,priority,name,nargs,args)
 	pptr->pbase = (long) saddr;
 	pptr->pstklen = ssize;
 	pptr->psem = 0;
+	pptr->plock = 0;
+	pptr->plstatus = LOCKE;
+	pptr->pltype = BLANK;
 	pptr->phasmsg = FALSE;
 	pptr->plimit = pptr->pbase - ssize + sizeof (long);	
 	pptr->pirmask[0] = 0;

@@ -36,6 +36,10 @@
 					/*  is always eligible to run	*/
 #define	BADPID		-1		/* used when invalid pid needed	*/
 
+#define LOCKDNE		0
+
+#define LOCKE 		1
+
 #define	isbadpid(x)	(x<=0 || x>=NPROC)
 
 /* process table entry */
@@ -60,6 +64,9 @@ struct	pentry	{
 	int	fildes[_NFILE];		/* file - device translation	*/
 	int	ppagedev;		/* pageing dgram device		*/
 	int	pwaitret;
+	int plock;			/* lock if process waiting */
+	int plstatus;		/* if the lock is deleted */
+	int pltype;			/* process is a reader or writer */
 };
 
 
