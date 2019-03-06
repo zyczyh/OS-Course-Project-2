@@ -26,12 +26,19 @@ int lock(int ldes1, int type, int priority)
 	if(lptr->ltype == BLANK) 
 	{
 		lptr->ltype = type;
+		pptr->pltype = type;
+		if(type == READ)
+		{
+			lptr->readernum = lptr->readernum + 1;
+		}
 		restore(ps);
 		return(OK);
 	}
 	else if(lptr->ltype == READ && type == READ && priority > lastkey(lptr->lqtail))
 	{
 		lptr->ltype = type;
+		pptr->pltype = type;
+		lptr->readernum = lptr->readernum + 1;
 		restore(ps);
 		return(OK);
 	}

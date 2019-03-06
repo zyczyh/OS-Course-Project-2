@@ -17,6 +17,7 @@ struct	lentry	{		/* semaphore table entry		*/
 	int ltype;		/* type of the lock(READ, WRITE or BLANK) */
 	int	lqhead;		/* q index of head of list		*/
 	int	lqtail;		/* q index of tail of list		*/
+	int readernum;	/* number of readers in critical section */
 };
 extern	struct	lentry	lock[];
 extern	int	nextlock;

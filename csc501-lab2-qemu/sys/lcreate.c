@@ -19,6 +19,7 @@ int lcreate()
 		return(SYSERR);
 	}
 	lock[loc].ltype = BLANK;
+	lock[loc].readernum = 0;
 	/* lqhead and lqtail were initialized at system startup */
 	restore(ps);
 	return(loc);
