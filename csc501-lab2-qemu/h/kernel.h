@@ -104,6 +104,10 @@ void trap(int inum);
 int xdone();
 long sizmem();
 void linit();
+int lock(int ldes1, int type, int priority);
+int lcreate();
+int ldelete (int lockdescriptor);
+int releaseall(int numlocks, long args, ...);
 
 
 #include <mem.h>
