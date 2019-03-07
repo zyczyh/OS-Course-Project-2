@@ -18,8 +18,8 @@ int lcreate()
 		restore(ps);
 		return(SYSERR);
 	}
-	lock[loc].ltype = BLANK;
-	lock[loc].readernum = 0;
+	locktab[loc].ltype = BLANK;
+	locktab[loc].readernum = 0;
 	/* lqhead and lqtail were initialized at system startup */
 	restore(ps);
 	return(loc);
@@ -34,8 +34,8 @@ LOCAL int newloc()
 		loc=nextlock--;
 		if (nextlock < 0)
 			nextlock = NLOCK-1;
-		if (lock[loc].lstate == LFREE) {
-			lock[loc].lstate = LUSED;
+		if (locktab[loc].lstate == LFREE) {
+			locktab[loc].lstate = LUSED;
 			return(loc);
 		}
 	}

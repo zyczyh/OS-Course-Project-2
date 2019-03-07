@@ -49,7 +49,9 @@ SYS =	blkcmp.c	blkequ.c	main.c		stacktrace.c	\
 	signal.c	signaln.c	sleep.c		sleep10.c	\
 	sleep100.c	sleep1000.c	sreset.c	suspend.c	\
 	unsleep.c	userret.c	wait.c		wakeup.c	\
-	write.c		xdone.c		pci.c		shutdown.c
+	write.c		xdone.c		pci.c		shutdown.c 	\
+	linit.c 	lcreate.c 	ldelete.c 	lock.c 		\
+	releaseall.c
 
 TTY =	ttyalloc.c	ttycntl.c	ttygetc.c	ttyiin.c	\
 	ttyinit.c	ttynew.c	ttyopen.c	ttyputc.c	\
@@ -184,6 +186,15 @@ FRC:
 
 # DO NOT DELETE THIS LINE - maketd DEPENDS ON IT
 
+linit.o: ../sys/linit.c ../h/conf.h ../h/lock.h ../h/q.h ../h/kernel.h
+lcreate.o: ../sys/lcreate.c ../h/conf.h ../h/lock.h ../h/q.h ../h/kernel.h ../h/proc.h \
+ ../h/stdio.h
+ldelete.o: ../sys/ldelete.c ../h/conf.h ../h/lock.h ../h/q.h ../h/kernel.h ../h/proc.h \
+ ../h/stdio.h
+lock.o: ../sys/lock.c ../h/conf.h ../h/lock.h ../h/q.h ../h/kernel.h ../h/proc.h \
+ ../h/stdio.h
+releaseall.o: ../sys/releaseall.c ../h/conf.h ../h/lock.h ../h/q.h ../h/kernel.h ../h/proc.h \
+ ../h/stdio.h
 comcntl.o: ../com/comcntl.c /usr/include/stdc-predef.h ../h/conf.h \
  ../h/kernel.h ../h/systypes.h ../h/mem.h
 comgetc.o: ../com/comgetc.c /usr/include/stdc-predef.h ../h/conf.h \

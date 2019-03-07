@@ -12,7 +12,7 @@ int lock(int ldes1, int type, int priority)
 	struct	pentry	*pptr;
 
 	disable(ps);
-	if(isbadlock(ldes1) || (lptr= &lock[ldes1])->lstate==LFREE) 
+	if(isbadlock(ldes1) || (lptr= &locktab[ldes1])->lstate==LFREE) 
 	{
 		restore(ps);
 		return(SYSERR);

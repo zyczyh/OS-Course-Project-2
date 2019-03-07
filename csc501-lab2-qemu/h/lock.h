@@ -19,7 +19,7 @@ struct	lentry	{		/* semaphore table entry		*/
 	int	lqtail;		/* q index of tail of list		*/
 	int readernum;	/* number of readers in critical section */
 };
-extern	struct	lentry	lock[];
+extern	struct	lentry	locktab[];
 extern	int	nextlock;
 
 #define	isbadlock(l)	(l<0 || l>=NSEM)

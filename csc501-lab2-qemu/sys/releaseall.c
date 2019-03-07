@@ -42,7 +42,7 @@ void release(int ldes)
 		return SYSERR;
 	}
 	pptr = &proctab[currpid];
-	lptr = &lock[ldes];
+	lptr = &locktab[ldes];
 	if(pptr->pltype == READ)
 	{
 		lptr->readernum = lptr->readernum - 1;

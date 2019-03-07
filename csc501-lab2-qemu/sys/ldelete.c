@@ -12,11 +12,11 @@ int ldelete (int lockdescriptor)
 	struct	lentry	*lptr;
 
 	disable(ps);
-	if (isbadlock(lockdescriptor) || lock[lockdescriptor].lstate==LFREE) {
+	if (isbadlock(lockdescriptor) || locktab[lockdescriptor].lstate==LFREE) {
 		restore(ps);
 		return(SYSERR);
 	}
-	lptr = &lock[lockdescriptor];
+	lptr = &locktab[lockdescriptor];
 	lptr->lstate = LFREE;
 	if (nonempty(lptr->lqhead)) {
 		while( (pid=getfirst(lptr->lqhead)) != EMPTY)
